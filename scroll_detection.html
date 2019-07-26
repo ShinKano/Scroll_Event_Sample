@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+
+<!-- Glow the sideber items as you scroll... -->
+<!-- if <li> has 'activeY'-class, it glows up-->
+
+<div class="side-bar">
+    <ul>
+      <li class="pg01"><a href="#pg01">someting</a></li>
+      <li class="pg02"><a href="#pg02">someting</a></li>
+      <li class="pg03"><a href="#pg03">someting</a></li>
+      <li class="pg04"><a href="#pg04">someting</a></li>
+      <li class="pg05"><a href="#pg05">someting</a></li>
+      <li class="pg06"><a href="#pg06">someting</a></li>
+    </ul>
+</div>
+
+
+<div class="main-contents">
+    <div id="pg01">content1</div>
+    <div id="pg02">content2</div>
+    <div id="pg03">content3</div>
+    <div id="pg04">content4</div>
+    <div id="pg05">content5</div>
+    <div id="pg06">content6</div>
+</div>
+
+
+<script type="text/javascript">
+
+  let timeoutId ;
+  let scrollY ;
+  let clientHeight ;
+  let vh ;
+
+  let pg01 = document.querySelector('.pg01');
+  let pg02 = document.querySelector('.pg02');
+  let pg03 = document.querySelector('.pg03');
+  let pg04 = document.querySelector('.pg04');
+  let pg05 = document.querySelector('.pg05');
+  let pg06 = document.querySelector('.pg06');
+
+  let divpg01 = document.querySelector('#pg01');
+  let divpg02 = document.querySelector('#pg02');
+  let divpg03 = document.querySelector('#pg03');
+  let divpg04 = document.querySelector('#pg04');
+  let divpg05 = document.querySelector('#pg05');
+  let divpg06 = document.querySelector('#pg06');
+
+
+// Run the function as linstening to your scroll event.
+// but set timer because it's too much without the timer.
+document.addEventListener('scroll', (e) => {
+    if ( timeoutId ) return ;
+    timeoutId = setTimeout( function () {
+      timeoutId = 0 ;
+
+// get the display heigth of the browser.
+      let clientHeight = e.srcElement.scrollingElement.clientHeight;
+
+// get the heights of the each divs
+      let clientRect01 = divpg01.getBoundingClientRect().y;
+      let clientRect02 = divpg02.getBoundingClientRect().y;
+      let clientRect03 = divpg03.getBoundingClientRect().y;
+      let clientRect04 = divpg04.getBoundingClientRect().y;
+      let clientRect05 = divpg05.getBoundingClientRect().y;
+      let clientRect06 = divpg06.getBoundingClientRect().y;
+
+
+      if (clientRect01 <= clientHeight) {
+        pg01.classList.add('activeY');
+      }else{
+        pg01.classList.remove('activeY');
+      }
+
+      if (clientRect02 <= clientHeight) {
+        pg02.classList.add('activeY');
+        pg01.classList.remove('activeY');
+      }else{
+        pg02.classList.remove('activeY');
+      }
+
+      if (clientRect03 <= clientHeight) {
+        pg03.classList.add('activeY');
+        pg02.classList.remove('activeY');
+      }else{
+        pg03.classList.remove('activeY');
+      }
+
+      if (clientRect04 <= clientHeight) {
+        pg04.classList.add('activeY');
+        pg03.classList.remove('activeY');
+      }else{
+        pg04.classList.remove('activeY');
+      }
+
+      if (clientRect05 <= clientHeight) {
+        pg05.classList.add('activeY');
+        pg04.classList.remove('activeY');
+      }else{
+        pg05.classList.remove('activeY');
+      }
+
+      if (clientRect06 <= clientHeight) {
+        pg06.classList.add('activeY');
+        pg05.classList.remove('activeY');
+      }else{
+        pg06.classList.remove('activeY');
+      }
+
+    }, 50)
+  })
+
+</script>
+
+</body>
+</html>
